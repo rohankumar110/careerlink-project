@@ -1,7 +1,10 @@
-package com.rohankumar.careerlink.postservice.entities.post;
+package com.rohankumar.careerlink.userservice.entities.user;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
@@ -11,21 +14,21 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "posts")
-public class Post {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 3000)
-    private String content;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
-    private Long totalLikes = 0L;
-
-    @Column(nullable = false)
-    private Long userId;
+    private String password;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
